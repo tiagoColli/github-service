@@ -35,6 +35,6 @@ defmodule GithubService.Application do
 
   # Conditionally disable queues or plugins here.
   defp oban_config do
-    Application.fetch_env!(:my_app, Oban)
+    Application.fetch_env!(:github_service, Oban)
   end
 end

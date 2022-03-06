@@ -1,4 +1,6 @@
 defmodule GithubService.MixProject do
+  @moduledoc false
+
   use Mix.Project
 
   def project do
@@ -43,10 +45,12 @@ defmodule GithubService.MixProject do
       {:jason, "~> 1.2"},
       {:plug_cowboy, "~> 2.5"},
       {:tesla, "~> 1.4"},
+      {:oban, "~> 2.7"},
 
       # test/dev deps
       {:credo, "~> 1.6", only: [:dev, :test], runtime: false},
       {:ex_machina, "~> 2.7", only: [:dev, :test]},
+      {:faker, "~> 0.17", only: [:dev, :test]},
       {:mox, "~> 1.0.1", only: :test}
     ]
   end

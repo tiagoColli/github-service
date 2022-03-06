@@ -11,8 +11,8 @@ config :github_service,
   ecto_repos: [GithubService.Repo]
 
 # Configures oban workers
-config :my_app, Oban,
-  repo: MyApp.Repo,
+config :github_service, Oban,
+  repo: GithubService.Repo,
   plugins: [Oban.Plugins.Pruner],
   queues: [default: 10, events: 50, media: 20]
 
