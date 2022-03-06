@@ -4,6 +4,8 @@ defmodule GithubService.Repos.Contributor do
   use Ecto.Schema
   import Ecto.Changeset
 
+  alias GithubService.Repos.Repository
+
   @fields ~w(github_id name qtd_commits user repository_id)a
   @required_fields ~w(github_id name qtd_commits user repository_id)a
 
@@ -12,7 +14,8 @@ defmodule GithubService.Repos.Contributor do
     field :name, :string
     field :qtd_commits, :integer
     field :user, :string
-    field :repository_id, :id
+
+    belongs_to :repository, Repository
 
     timestamps()
   end

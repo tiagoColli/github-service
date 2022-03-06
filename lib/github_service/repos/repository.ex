@@ -4,12 +4,17 @@ defmodule GithubService.Repos.Repository do
   use Ecto.Schema
   import Ecto.Changeset
 
+  alias GithubService.Repos.{Contributor, Issue}
+
   @fields ~w(repository user)a
   @required_fields ~w(repository user)a
 
   schema "repos" do
     field :repository, :string
     field :user, :string
+
+    has_many :issues, Issue, foreign_key: :repository_id
+    has_many :contributor, Contributor, foreign_key: :repository_id
 
     timestamps()
   end

@@ -4,10 +4,10 @@ defmodule GithubService.Repos.Issue do
   use Ecto.Schema
   import Ecto.Changeset
 
-  alias GithubService.Repos.Repo
+  alias GithubService.Repos.Repository
 
-  @fields ~w(author github_id labels title repo_id)a
-  @required_fields ~w(author github_id title repo_id)a
+  @fields ~w(author github_id labels title repository_id)a
+  @required_fields ~w(author github_id labels title repository_id)a
 
   schema "issues" do
     field :author, :string
@@ -15,7 +15,7 @@ defmodule GithubService.Repos.Issue do
     field :labels, {:array, :string}
     field :title, :string
 
-    belongs_to :repo, Repo
+    belongs_to :repository, Repository
 
     timestamps()
   end
