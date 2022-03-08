@@ -4,20 +4,15 @@ defmodule GithubService.Repos.Contributor do
   use Ecto.Schema
   import Ecto.Changeset
 
-  alias GithubService.Repos.Repository
+  @fields ~w(name qtd_commits user)a
+  @required_fields ~w(name qtd_commits user)a
 
-  @fields ~w(github_id name qtd_commits user repository_id)a
-  @required_fields ~w(github_id name qtd_commits user repository_id)a
-
-  schema "contributors" do
-    field :github_id, :integer
+  @derive {Jason.Encoder, only: [:name, :qtd_commits, :user]}
+  @primary_key false
+  embedded_schema do
     field :name, :string
     field :qtd_commits, :integer
     field :user, :string
-
-    belongs_to :repository, Repository
-
-    timestamps()
   end
 
   @doc false

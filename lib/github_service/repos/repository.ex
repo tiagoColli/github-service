@@ -7,22 +7,25 @@ defmodule GithubService.Repos.Repository do
   alias GithubService.Repos.{Contributor, Issue}
 
   @fields ~w(repository user)a
-  @required_fields ~w(repository user)a
+  @required_fields ~w(contributors issues repository user)a
 
-  schema "repos" do
+  @derive {Jason.Encoder, only: [:repository, :user, :contributors, :issues]}
+  schema "repositories" do
     field :repository, :string
     field :user, :string
 
-    has_many :issues, Issue, foreign_key: :repository_id
-    has_many :contributor, Contributor, foreign_key: :repository_id
+    embeds_many :contributors, Contributor
+    embeds_many :issues, Issue
 
     timestamps()
   end
 
   @doc false
-  def changeset(%__MODULE__{} = repo, attrs) do
-    repo
+  def changeset(%__MODULE__{} = repository, attrs) do
+    repository
     |> cast(attrs, @fields)
+    |> cast_embed(:issues)
+    |> cast_embed(:contributors)
     |> validate_required(@required_fields)
   end
 end
