@@ -24,15 +24,6 @@ defmodule GithubService.Repos do
     |> Repo.insert()
   end
 
-  def build_repository_map(user, repository, issues, contributors) do
-    %{
-      user: user,
-      repository: repository,
-      issues: issues,
-      contributors: contributors
-    }
-  end
-
   def get_repository(id), do: Repo.get(Repository, id)
 
   def parse_and_build_repository(user, repository, issues, contributors) do
@@ -64,4 +55,13 @@ defmodule GithubService.Repos do
   defdelegate fetch_repo_assync(user_name, repo_name),
     to: FetchAssync,
     as: :issues_and_contributors
+
+  defp build_repository_map(user, repository, issues, contributors) do
+    %{
+      user: user,
+      repository: repository,
+      issues: issues,
+      contributors: contributors
+    }
+  end
 end
