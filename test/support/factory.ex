@@ -33,6 +33,24 @@ defmodule GithubService.Factory do
     }
   end
 
+  def issue_map_factory() do
+    %{
+      author: Person.PtBr.name(),
+      labels: gen_labels(3),
+      title: Lorem.word()
+    }
+  end
+
+  def contributor_map_factory() do
+    name = Person.PtBr.name()
+
+    %{
+      name: name,
+      user: name,
+      qtd_commits: 10
+    }
+  end
+
   def github_contributor_factory() do
     %{
       "login" => "josevalim",
