@@ -7,7 +7,7 @@ defmodule GithubService.Repos.Repository do
   alias GithubService.Repos.{Contributor, Issue}
 
   @fields ~w(repository user)a
-  @required_fields ~w(contributors issues repository user)a
+  @required_fields ~w(repository user)a
 
   @derive {Jason.Encoder, only: [:repository, :user, :contributors, :issues]}
   schema "repositories" do
