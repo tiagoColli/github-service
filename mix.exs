@@ -12,7 +12,8 @@ defmodule GithubService.MixProject do
       compilers: [:gettext] ++ Mix.compilers(),
       start_permanent: Mix.env() == :prod,
       aliases: aliases(),
-      deps: deps()
+      deps: deps(),
+      test_coverage: [tool: ExCoveralls]
     ]
   end
 
@@ -51,7 +52,8 @@ defmodule GithubService.MixProject do
       {:credo, "~> 1.6", only: [:dev, :test], runtime: false},
       {:ex_machina, "~> 2.7", only: [:dev, :test]},
       {:faker, "~> 0.17", only: [:dev, :test]},
-      {:mox, "~> 1.0.1", only: :test}
+      {:mox, "~> 1.0.1", only: :test},
+      {:excoveralls, "~> 0.10", only: :test}
     ]
   end
 
