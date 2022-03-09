@@ -7,5 +7,7 @@ defmodule GithubServiceWeb.Router do
 
   scope "/api", GithubServiceWeb do
     pipe_through :api
+
+    get "/repo_assync", RepoController, :fetch_repo_assync
   end
 end
