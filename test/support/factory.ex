@@ -33,6 +33,15 @@ defmodule GithubService.Factory do
     }
   end
 
+  def repository_map_factory() do
+    %{
+      user: Person.PtBr.name(),
+      repository: Lorem.word(),
+      issues: build_list(3, :issue_map),
+      contributors: build_list(3, :contributor_map)
+    }
+  end
+
   def issue_map_factory() do
     %{
       author: Person.PtBr.name(),
