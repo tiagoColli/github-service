@@ -1,4 +1,4 @@
-defmodule GithubService.Repos.HttpClients.GithubBehaviour do
+defmodule HttpClients.GithubBehaviour do
   @moduledoc false
 
   @type response ::

@@ -5,7 +5,6 @@ defmodule GithubService.Repos.Workers.SendRepoWorker do
 
   use Oban.Worker
 
-  alias GithubService.HttpClients
   alias GithubService.Repos
 
   @doc """
@@ -24,3 +23,5 @@ defmodule GithubService.Repos.Workers.SendRepoWorker do
     |> Jason.encode()
   end
 end
+
+

@@ -1,11 +1,11 @@
-defmodule GithubService.HttpClients.WebhookSite do
+defmodule HttpClients.WebhookSite do
   @moduledoc """
   Contains logic to make http calls to webhook site.
   """
 
   use Tesla
 
-  @behaviour GithubService.HttpClients.WebhookSiteBehaviour
+  @behaviour HttpClients.WebhookSiteBehaviour
 
   plug Tesla.Middleware.BaseUrl,
        Application.get_env(:github_service, :webhook_site_url) <>

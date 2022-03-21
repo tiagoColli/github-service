@@ -30,5 +30,5 @@ config :logger, level: :warn
 config :phoenix, :plug_init_mode, :runtime
 
 # Set test env to get mock
-config :github_service, github_http_client: GithubService.Repos.HttpClients.GithubMock
-config :github_service, webhook_site_client: GithubService.HttpClients.WebhookSiteMock
+config :github_service, github_http_client: HttpClients.GithubMock
+config :github_service, webhook_site_client: HttpClients.WebhookSiteMock

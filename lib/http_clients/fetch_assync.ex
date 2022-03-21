@@ -1,9 +1,9 @@
-defmodule GithubService.Repos.FetchAssync do
+defmodule HttpClients.FetchAssync do
   @moduledoc """
   Contains logic to fetch data assync from github.
   """
 
-  alias GithubService.Repos
+  alias HttpClients.Github
 
   @doc """
   Query github api asynchronously to fetch issue and contributor data from a given
@@ -19,18 +19,20 @@ defmodule GithubService.Repos.FetchAssync do
   """
 
   def issues_and_contributors(user_name, repo_name) do
-    issues_task = Task.async(fn -> Repos.get_issues_from_github(user_name, repo_name) end)
-
-    contributor_task =
-      Task.async(fn -> Repos.get_contributors_from_github(user_name, repo_name) end)
-
-    issue_response = Task.await(issues_task)
-    contributors_response = Task.await(contributor_task)
-
-    handle_response(issue_response, contributors_response)
+    user_name
+    |> issues_and_contributors_tasks(repo_name)
+    |> Task.await_many()
+    |> handle_response()
   end
 
-  defp handle_response(issue_response, contributors_response) do
+  defp issues_and_contributors_tasks(user_name, repo_name) do
+    issues_task = Task.async(fn -> Github.list_repo_issues(user_name, repo_name) end)
+    contributor_task = Task.async(fn -> Github.list_repo_contributors(user_name, repo_name) end)
+
+    [issues_task, contributor_task]
+  end
+
+  defp handle_response([issue_response, contributors_response]) do
     case {issue_response, contributors_response} do
       {{:ok, issues}, {:ok, contributors}} ->
         {:ok, %{issues: issues, contributors: contributors}}

@@ -1,4 +1,4 @@
-defmodule GithubService.HttpClients.WebhookSiteBehaviour do
+defmodule HttpClients.WebhookSiteBehaviour do
   @moduledoc false
 
   @type response ::
