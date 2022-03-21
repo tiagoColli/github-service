@@ -7,8 +7,8 @@ defmodule GithubService.Repos.Workers.SendRepoWorkerTest do
   import Mox
   import GithubService.Factory
 
-  alias GithubService.HttpClients.WebhookSiteMock
   alias GithubService.Repos.Workers.SendRepoWorker
+  alias HttpClients.WebhookSiteMock
 
   describe "perform/1" do
     setup do

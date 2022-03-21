@@ -4,9 +4,9 @@ defmodule GithubService.Repos do
   """
 
   alias GithubService.Repo
-  alias GithubService.Repos.HttpClients.GithubParser
   alias GithubService.Repos.Repository
   alias GithubService.Repos.Workers.SendRepoWorker
+  alias HttpClients.Parsers.Github
 
   @one_day 60 * 60 * 24
 
@@ -19,8 +19,8 @@ defmodule GithubService.Repos do
   def get_repository(id), do: Repo.get(Repository, id)
 
   def parse_and_build_repository(user, repository, issues, contributors) do
-    with {:ok, parsed_issues} <- GithubParser.parse_issues(issues),
-         {:ok, parsed_contributors} <- GithubParser.parse_contributors(contributors) do
+    with {:ok, parsed_issues} <- Github.parse_issues(issues),
+         {:ok, parsed_contributors} <- Github.parse_contributors(contributors) do
       {:ok, build_repository_map(user, repository, parsed_issues, parsed_contributors)}
     end
   end

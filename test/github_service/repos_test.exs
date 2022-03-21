@@ -108,61 +108,6 @@ defmodule GithubService.ReposTest do
     end
   end
 
-  describe "get_issues_from_github/2" do
-    test "when the given user-repo combination exists, returns the issues with success" do
-      github_issue_list = build_list(3, :github_issue)
-
-      expect(GithubMock, :list_repo_issues, fn _, _ ->
-        {:ok, %Tesla.Env{status: 200, body: github_issue_list}}
-      end)
-
-      assert {:ok, github_issue_list} == Repos.get_issues_from_github("user", "repository")
-    end
-
-    test "when the given user-repo combination dont exists, returns an not found error with message" do
-      expect(GithubMock, :list_repo_issues, fn _, _ ->
-        {:ok, %Tesla.Env{status: 404, body: %{"message" => "Not Found"}}}
-      end)
-
-      assert {:error, %{"message" => "Not Found"}} ==
-               Repos.get_issues_from_github("user", "repository")
-    end
-
-    test "when the call returns an error, returns an error" do
-      expect(GithubMock, :list_repo_issues, fn _, _ -> {:error, :error} end)
-
-      assert {:error, :error} == Repos.get_issues_from_github("user", "repository")
-    end
-  end
-
-  describe "get_contributors_from_github/2" do
-    test "when the given user-repo combination exists, returns the contributors with success" do
-      github_contributor_list = build_list(3, :github_contributor)
-
-      expect(GithubMock, :list_repo_contributors, fn _, _ ->
-        {:ok, %Tesla.Env{status: 200, body: github_contributor_list}}
-      end)
-
-      assert {:ok, github_contributor_list} ==
-               Repos.get_contributors_from_github("user", "repository")
-    end
-
-    test "when the given user-repo combination dont exists, returns an not found error with message" do
-      expect(GithubMock, :list_repo_contributors, fn _, _ ->
-        {:ok, %Tesla.Env{status: 404, body: %{"message" => "Not Found"}}}
-      end)
-
-      assert {:error, %{"message" => "Not Found"}} ==
-               Repos.get_contributors_from_github("user", "repository")
-    end
-
-    test "when the call returns an error, returns an error" do
-      expect(GithubMock, :list_repo_contributors, fn _, _ -> {:error, :error} end)
-
-      assert {:error, :error} == Repos.get_contributors_from_github("user", "repository")
-    end
-  end
-
   describe "schedule_repo_send/1" do
     test "when the given params valid, returns success and schedule the job" do
       id = 123

@@ -1,4 +1,4 @@
-defmodule GithubService.Repos.HttpClients.GithubParser do
+defmodule HttpClients.Parsers.Github do
   @moduledoc """
   Contains logic to parse github repositories public api responses.
   """

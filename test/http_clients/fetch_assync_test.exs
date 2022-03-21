@@ -1,12 +1,11 @@
-defmodule GithubService.Repos.FetchAssyncTest do
+defmodule HttpClients.FetchAssyncTest do
   @moduledoc false
 
   use GithubService.DataCase
 
   import Mox
 
-  alias GithubService.Repos.FetchAssync
-  alias GithubService.Repos.HttpClients.GithubMock
+  alias HttpClients.{FetchAssync, GithubMock}
 
   describe "issues_and_contributors/2" do
     test "when everything works ok, returns success with both api responses" do

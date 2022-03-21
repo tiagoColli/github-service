@@ -1,11 +1,11 @@
-defmodule GithubService.Repos.HttpClients.GithubParserTest do
+defmodule HttpClients.Parsers.GithubTest do
   @moduledoc false
 
   use GithubService.DataCase
 
   import GithubService.Factory
 
-  alias GithubService.Repos.HttpClients.GithubParser
+  alias HttpClients.Parsers.Github
   alias GithubService.Repos.{Contributor, Issue}
 
   describe "parse_issue/1" do
@@ -18,11 +18,11 @@ defmodule GithubService.Repos.HttpClients.GithubParserTest do
                   "Pipe operator removes a function's import context if the import is outside a quote block",
                 labels: ["Kind =>Bug", "App =>Elixir (compiler)"],
                 author: "polvalente"
-              }} = GithubParser.parse_issue(issue)
+              }} = Github.parse_issue(issue)
     end
 
     test "when the parse fails, returns an error" do
-      assert {:error, :parse_error} = GithubParser.parse_issue(%{})
+      assert {:error, :parse_error} = Github.parse_issue(%{})
     end
   end
 
@@ -50,13 +50,13 @@ defmodule GithubService.Repos.HttpClients.GithubParserTest do
                   labels: ["Kind =>Bug", "App =>Elixir (compiler)"],
                   author: "polvalente"
                 }
-              ]} = GithubParser.parse_issues(issues)
+              ]} = Github.parse_issues(issues)
     end
 
     test "when some of the issues in the list fails, returns an error" do
       issues = build_list(3, :github_issue)
 
-      assert {:error, :parse_error} = GithubParser.parse_issues([%{} | issues])
+      assert {:error, :parse_error} = Github.parse_issues([%{} | issues])
     end
   end
 
@@ -69,11 +69,11 @@ defmodule GithubService.Repos.HttpClients.GithubParserTest do
                 name: "josevalim",
                 user: "josevalim",
                 qtd_commits: 10_190
-              }} = GithubParser.parse_contributor(contributor)
+              }} = Github.parse_contributor(contributor)
     end
 
     test "when the parse fails, returns an error" do
-      assert {:error, :parse_error} = GithubParser.parse_contributor(%{})
+      assert {:error, :parse_error} = Github.parse_contributor(%{})
     end
   end
 
@@ -98,13 +98,13 @@ defmodule GithubService.Repos.HttpClients.GithubParserTest do
                   user: "josevalim",
                   qtd_commits: 10_190
                 }
-              ]} = GithubParser.parse_contributors(contributors)
+              ]} = Github.parse_contributors(contributors)
     end
 
     test "when the parse fails, returns an error" do
       contributors = build_list(3, :github_contributor)
 
-      assert {:error, :parse_error} = GithubParser.parse_contributors([%{} | contributors])
+      assert {:error, :parse_error} = Github.parse_contributors([%{} | contributors])
     end
   end
 end

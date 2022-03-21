@@ -3,8 +3,6 @@ defmodule HttpClients.FetchAssync do
   Contains logic to fetch data assync from github.
   """
 
-  alias HttpClients.Github
-
   @doc """
   Query github api asynchronously to fetch issue and contributor data from a given
   repository identified by name and owner.
@@ -26,8 +24,10 @@ defmodule HttpClients.FetchAssync do
   end
 
   defp issues_and_contributors_tasks(user_name, repo_name) do
-    issues_task = Task.async(fn -> Github.list_repo_issues(user_name, repo_name) end)
-    contributor_task = Task.async(fn -> Github.list_repo_contributors(user_name, repo_name) end)
+    issues_task = Task.async(fn -> HttpClients.get_issues_from_github(user_name, repo_name) end)
+
+    contributor_task =
+      Task.async(fn -> HttpClients.get_contributors_from_github(user_name, repo_name) end)
 
     [issues_task, contributor_task]
   end
