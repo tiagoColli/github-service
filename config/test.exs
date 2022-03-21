@@ -13,6 +13,13 @@ config :github_service, GithubService.Repo,
   pool: Ecto.Adapters.SQL.Sandbox,
   pool_size: 10
 
+# Configure the database for GitHub Actions
+if System.get_env("GITHUB_ACTIONS") do
+  config :app, App.Repo,
+    username: "postgres",
+    password: "postgres"
+end
+
 # Oban configs for tested
 config :github_service, Oban, queues: false, plugins: false
 
