@@ -108,3 +108,12 @@ jobs:
             priv/plts
           key: ${{ runner.os }}-${{ matrix.otp }}-${{ matrix.elixir }}-${{ hashFiles('mix.lock') }}
       - run: mix test --trace --slowest 10
+      - name: Run tests
+        run: mix coveralls.json
+        env:
+          MIX_ENV: test
+      - name: Upload to Codecov
+        run: |
+          curl -Os https://uploader.codecov.io/latest/linux/codecov
+          chmod +x codecov
+          ./codecov
