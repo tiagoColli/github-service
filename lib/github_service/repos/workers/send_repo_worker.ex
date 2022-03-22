@@ -23,5 +23,3 @@ defmodule GithubService.Repos.Workers.SendRepoWorker do
     |> Jason.encode()
   end
 end
-
-
