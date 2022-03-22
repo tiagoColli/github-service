@@ -1,3 +1,5 @@
+[![Elixir CI](https://github.com/tiagoColli/github-service/actions/workflows/elixir.yml/badge.svg)](https://github.com/tiagoColli/github-service/actions/workflows/elixir.yml)
+
 # GithubService
 
 ## Objetivo
