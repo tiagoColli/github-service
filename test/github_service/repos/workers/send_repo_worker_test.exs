@@ -37,7 +37,7 @@ defmodule GithubService.Repos.Workers.SendRepoWorkerTest do
         {:ok, %Tesla.Env{status: 500, body: mock_body}}
       end)
 
-      assert {:error, mock_body} = perform_job(SendRepoWorker, attrs)
+      assert {:error, ^mock_body} = perform_job(SendRepoWorker, attrs)
     end
 
     test "when the call is made but with 400 status, returns the error", %{
@@ -50,7 +50,7 @@ defmodule GithubService.Repos.Workers.SendRepoWorkerTest do
         {:ok, %Tesla.Env{status: 400, body: mock_body}}
       end)
 
-      assert {:error, mock_body} = perform_job(SendRepoWorker, attrs)
+      assert {:error, ^mock_body} = perform_job(SendRepoWorker, attrs)
     end
 
     test "returns an error when connection times out", %{repository_id: repository_id} do

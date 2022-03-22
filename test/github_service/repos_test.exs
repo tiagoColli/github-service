@@ -5,12 +5,10 @@ defmodule GithubService.ReposTest do
 
   use Oban.Testing, repo: GithubService.Repo
 
-  import Mox
   import GithubService.Factory
 
   alias Faker.{Lorem, Person}
   alias GithubService.Repos
-  alias GithubService.Repos.HttpClients.GithubMock
   alias GithubService.Repos.Repository
   alias GithubService.Repos.Workers.SendRepoWorker
 

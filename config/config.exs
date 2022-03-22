@@ -36,8 +36,8 @@ config :github_service,
   github_base_api: "https://api.github.com",
   webhook_site_url: "https://webhook.site"
 
-if Mix.env() != :prod do
-  config :github_service, :git_hooks,
+if Mix.env() == :dev do
+  config :git_hooks,
     verbose: true,
     hooks: [
       pre_commit: [

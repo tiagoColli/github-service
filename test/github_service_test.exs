@@ -43,7 +43,7 @@ defmodule GithubServiceTest do
       assert {:ok,
               %{
                 repository_id: repository_id,
-                scheduled_at: scheduled_at
+                scheduled_at: _scheduled_at
               }} = GithubService.fetch_repo_assync(user, repository)
 
       assert %Repository{} = Repos.get_repository(repository_id)

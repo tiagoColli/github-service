@@ -6,7 +6,6 @@ defmodule HttpClients.Parsers.GithubTest do
   import GithubService.Factory
 
   alias HttpClients.Parsers.Github
-  alias GithubService.Repos.{Contributor, Issue}
 
   describe "parse_issue/1" do
     test "when parse with success, return success with the parsed issue" do

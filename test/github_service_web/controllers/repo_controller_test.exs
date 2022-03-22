@@ -52,7 +52,7 @@ defmodule GithubServiceWeb.RepoControllerTest do
       assert %{
                "message" => "Webhook scheduled with success",
                "repository_id" => repository_id,
-               "scheduled_at" => scheduled_at
+               "scheduled_at" => _scheduled_at
              } = json_response(conn, 200)
 
       assert %Repository{} = Repos.get_repository(repository_id)
