@@ -6,7 +6,7 @@ defmodule GithubService.Factory do
 
   alias Faker.{Lorem, Person}
 
-  def repository_factory() do
+  def repository_factory do
     %Repository{
       user: Person.PtBr.name(),
       repository: Lorem.word(),
@@ -15,7 +15,7 @@ defmodule GithubService.Factory do
     }
   end
 
-  def issue_factory() do
+  def issue_factory do
     %Issue{
       author: Person.PtBr.name(),
       labels: gen_labels(3),
@@ -23,7 +23,7 @@ defmodule GithubService.Factory do
     }
   end
 
-  def contributor_factory() do
+  def contributor_factory do
     name = Person.PtBr.name()
 
     %Contributor{
@@ -33,7 +33,7 @@ defmodule GithubService.Factory do
     }
   end
 
-  def repository_map_factory() do
+  def repository_map_factory do
     %{
       user: Person.PtBr.name(),
       repository: Lorem.word(),
@@ -42,7 +42,7 @@ defmodule GithubService.Factory do
     }
   end
 
-  def issue_map_factory() do
+  def issue_map_factory do
     %{
       author: Person.PtBr.name(),
       labels: gen_labels(3),
@@ -50,7 +50,7 @@ defmodule GithubService.Factory do
     }
   end
 
-  def contributor_map_factory() do
+  def contributor_map_factory do
     name = Person.PtBr.name()
 
     %{
@@ -60,7 +60,7 @@ defmodule GithubService.Factory do
     }
   end
 
-  def github_contributor_factory() do
+  def github_contributor_factory do
     %{
       "login" => "josevalim",
       "id" => 9582,
@@ -84,7 +84,7 @@ defmodule GithubService.Factory do
     }
   end
 
-  def github_issue_factory() do
+  def github_issue_factory do
     %{
       "url" => "https =>//api.github.com/repos/elixir-lang/elixir/issues/11651",
       "repository_url" => "https =>//api.github.com/repos/elixir-lang/elixir",

@@ -47,9 +47,10 @@ defmodule GithubService.MixProject do
       {:plug_cowboy, "~> 2.5"},
       {:tesla, "~> 1.4"},
       {:oban, "~> 2.7"},
-      {:dialyxir, "~> 1.1"},
 
       # test/dev deps
+      {:dialyxir, "~> 1.1", only: [:dev, :test], runtime: false},
+      {:git_hooks, "~> 0.7.0", only: [:dev], runtime: false},
       {:credo, "~> 1.6", only: [:dev, :test], runtime: false},
       {:ex_machina, "~> 2.7", only: [:dev, :test]},
       {:faker, "~> 0.17", only: [:dev, :test]},
