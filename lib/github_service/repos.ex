@@ -26,7 +26,7 @@ defmodule GithubService.Repos do
   end
 
   def schedule_repo_send(repository_id) do
-    case SendRepoWorker.new(%{"repository_id" => repository_id}, schedule_in: @one_day) do
+    case SendRepoWorker.new(%{"repository_id" => repository_id}, schedule_in: 5) do
       %{valid?: true} = changeset -> Oban.insert(changeset)
       changeset -> {:error, changeset}
     end

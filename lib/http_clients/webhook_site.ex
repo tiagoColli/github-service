@@ -9,7 +9,7 @@ defmodule HttpClients.WebhookSite do
 
   plug Tesla.Middleware.BaseUrl,
        Application.get_env(:github_service, :webhook_site_url) <>
-         "/87fe7745-4622-48fe-80b0-a00aed7f2818"
+         "/344880f8-5f2a-449a-8e35-8445cd001bdb"
 
   plug Tesla.Middleware.JSON
 
