@@ -1,6 +1,4 @@
-[![Elixir CI](https://github.com/tiagoColli/github-service/actions/workflows/elixir.yml/badge.svg)](https://github.com/tiagoColli/github-service/actions/workflows/elixir.yml)
-
-[![Coverage](https://coveralls.io/repos/github/tiagoColli/github-service/badge.svg?branch=master)](https://coveralls.io/github/tiagoColli/github-service?branch=master)
+[![Elixir CI](https://github.com/tiagoColli/github-service/actions/workflows/elixir.yml/badge.svg)](https://github.com/tiagoColli/github-service/actions/workflows/elixir.yml) [![codecov](https://codecov.io/gh/tiagoColli/github-service/branch/master/graph/badge.svg?token=1F5453SPEF)](https://codecov.io/gh/tiagoColli/github-service)
 
 # GithubService
 
