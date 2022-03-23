@@ -2,10 +2,6 @@
 
 # GithubService
 
-## Objetivo
-
-Repositório destinado a implementação do case técnico da Swap.
-
 ## Projeto
 
 O projeto tem como objetivo recuperar dados da api do github, salva-los no banco de dados e envia-los através de um webhook.
