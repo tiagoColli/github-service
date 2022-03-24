@@ -39,6 +39,7 @@ config :github_service,
 if Mix.env() == :dev do
   config :git_hooks,
     verbose: true,
+    auto_install: false,
     hooks: [
       pre_commit: [
         tasks: [
