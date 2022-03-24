@@ -153,3 +153,25 @@ jobs:
           curl -Os https://uploader.codecov.io/latest/linux/codecov
           chmod +x codecov
           ./codecov
+
+  deploy:
+    needs: [static-code-analysis, mix-test, test-coverrals]
+
+    if: github.ref == 'refs/heads/master'
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+        
+        with:
+          ref: master
+          fetch-depth: 0
+
+      # configure the gigalixir-actions with our credentials and app name
+      - uses: mhanberg/gigalixir-action@v0.1.0
+        with:
+          GIGALIXIR_USERNAME: ${{ secrets.GIGALIXIR_USERNAME }}
+          GIGALIXIR_PASSWORD: ${{ secrets.GIGALIXIR_PASSWORD }}
+          GIGALIXIR_APP: github-service
+          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
